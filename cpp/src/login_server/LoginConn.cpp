@@ -24,7 +24,11 @@ typedef struct  {
     UserConnCntMap_t user_cnt_map;
 } msg_serv_info_t;
 
-static map<uint32_t, msg_serv_info_t*> g_msg_serv_info;
+/*
+ * key:与消息服务器保持连接的socket句柄
+ * value:消息服务器的具体信息
+ */
+static map<net_handle_t, msg_serv_info_t*> g_msg_serv_info;
 
 void login_conn_timer_callback(void* callback_data, uint8_t msg, uint32_t handle, void* pParam)
 {
